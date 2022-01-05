@@ -244,7 +244,7 @@ exports.postDeleteAccount = (req, res, next) => {
 /**
  * GET /account/unlink/:provider
  * Unlink OAuth provider.
- */
+ 
 exports.getOauthUnlink = (req, res, next) => {
   const { provider } = req.params;
   User.findById(req.user.id, (err, user) => {

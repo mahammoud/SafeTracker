@@ -3,13 +3,13 @@ const cheerio = require('cheerio');
 const { LastFmNode } = require('lastfm');
 const tumblr = require('tumblr.js');
 const { Octokit } = require('@octokit/rest');
-const Twitter = require('twitter-lite');
+//const Twitter = require('twitter-lite');
 const stripe = require('stripe')(process.env.STRIPE_SKEY);
 const twilio = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
-const paypal = require('paypal-rest-sdk');
+//const paypal = require('paypal-rest-sdk');
 const crypto = require('crypto');
 const lob = require('lob')(process.env.LOB_KEY);
-const ig = require('instagram-node').instagram();
+//const ig = require('instagram-node').instagram();
 const axios = require('axios');
 const { google } = require('googleapis');
 const Quickbooks = require('node-quickbooks');
@@ -82,7 +82,7 @@ exports.getTumblr = (req, res, next) => {
 /**
  * GET /api/facebook
  * Facebook API example.
- */
+ 
 exports.getFacebook = (req, res, next) => {
   const token = req.user.tokens.find((token) => token.kind === 'facebook');
   const secret = process.env.FACEBOOK_SECRET;
@@ -120,7 +120,7 @@ exports.getScraping = (req, res, next) => {
 /**
  * GET /api/github
  * GitHub API Example.
- */
+ 
 exports.getGithub = async (req, res, next) => {
   const github = new Octokit();
   try {
@@ -151,7 +151,7 @@ exports.getQuickbooks = (req, res) => {
 /**
  * GET /api/nyt
  * New York Times API example.
- */
+ 
 exports.getNewYorkTimes = (req, res, next) => {
   const apiKey = process.env.NYT_KEY;
   axios.get(`http://api.nytimes.com/svc/books/v2/lists?list-name=young-adult&api-key=${apiKey}`)
@@ -254,7 +254,7 @@ exports.getLastfm = async (req, res, next) => {
 /**
  * GET /api/twitter
  * Twitter API example.
- */
+ 
 exports.getTwitter = async (req, res, next) => {
   const token = req.user.tokens.find((token) => token.kind === 'twitter');
   const T = new Twitter({
@@ -281,7 +281,7 @@ exports.getTwitter = async (req, res, next) => {
 /**
  * POST /api/twitter
  * Post a tweet.
- */
+ 
 exports.postTwitter = async (req, res, next) => {
   const validationErrors = [];
   if (validator.isEmpty(req.body.tweet)) validationErrors.push({ msg: 'Tweet cannot be empty' });
@@ -310,7 +310,7 @@ exports.postTwitter = async (req, res, next) => {
 /**
  * GET /api/steam
  * Steam API example.
- */
+ 
 exports.getSteam = async (req, res, next) => {
   const steamId = req.user.steam;
   const params = { l: 'english', steamid: steamId, key: process.env.STEAM_KEY };
@@ -389,7 +389,7 @@ exports.getSteam = async (req, res, next) => {
 /**
  * GET /api/stripe
  * Stripe API example.
- */
+ 
 exports.getStripe = (req, res) => {
   res.render('api/stripe', {
     title: 'Stripe API',
@@ -400,7 +400,7 @@ exports.getStripe = (req, res) => {
 /**
  * POST /api/stripe
  * Make a payment.
- */
+ 
 exports.postStripe = (req, res) => {
   const { stripeToken, stripeEmail } = req.body;
   stripe.charges.create({
@@ -421,7 +421,7 @@ exports.postStripe = (req, res) => {
 /**
  * GET /api/twilio
  * Twilio API example.
- */
+ 
 exports.getTwilio = (req, res) => {
   res.render('api/twilio', {
     title: 'Twilio API'
@@ -431,7 +431,7 @@ exports.getTwilio = (req, res) => {
 /**
  * POST /api/twilio
  * Send a text message using Twilio.
- */
+ 
 exports.postTwilio = (req, res, next) => {
   const validationErrors = [];
   if (validator.isEmpty(req.body.number)) validationErrors.push({ msg: 'Phone number is required.' });
@@ -455,7 +455,7 @@ exports.postTwilio = (req, res, next) => {
 
 /**
  * Get /api/twitch
- */
+ 
 exports.getTwitch = async (req, res, next) => {
   const token = req.user.tokens.find((token) => token.kind === 'twitch');
   const twitchID = req.user.twitch;
@@ -488,7 +488,7 @@ exports.getTwitch = async (req, res, next) => {
 /**
  * GET /api/chart
  * Chart example.
- */
+ 
 exports.getChart = async (req, res, next) => {
   const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&outputsize=compact&apikey=${process.env.ALPHA_VANTAGE_KEY}`;
   axios.get(url)
@@ -519,7 +519,7 @@ exports.getChart = async (req, res, next) => {
 /**
  * GET /api/instagram
  * Instagram API example.
- */
+ 
 exports.getInstagram = async (req, res, next) => {
   const token = req.user.tokens.find((token) => token.kind === 'instagram');
   ig.use({ client_id: process.env.INSTAGRAM_ID, client_secret: process.env.INSTAGRAM_SECRET });
@@ -539,7 +539,7 @@ exports.getInstagram = async (req, res, next) => {
 /**
  * GET /api/paypal
  * PayPal SDK example.
- */
+ 
 exports.getPayPal = (req, res, next) => {
   paypal.configure({
     mode: 'sandbox',
@@ -582,7 +582,7 @@ exports.getPayPal = (req, res, next) => {
 /**
  * GET /api/paypal/success
  * PayPal SDK example.
- */
+ 
 exports.getPayPalSuccess = (req, res) => {
   const { paymentId } = req.session;
   const paymentDetails = { payer_id: req.query.PayerID };
@@ -597,7 +597,7 @@ exports.getPayPalSuccess = (req, res) => {
 /**
  * GET /api/paypal/cancel
  * PayPal SDK example.
- */
+ 
 exports.getPayPalCancel = (req, res) => {
   req.session.paymentId = null;
   res.render('api/paypal', {
@@ -609,7 +609,7 @@ exports.getPayPalCancel = (req, res) => {
 /**
  * GET /api/lob
  * Lob API example.
- */
+ 
 exports.getLob = async (req, res, next) => {
   let recipientName;
   if (req.user) { recipientName = req.user.profile.name; } else { recipientName = 'John Doe'; }
@@ -680,7 +680,7 @@ exports.postFileUpload = (req, res) => {
 /**
  * GET /api/pinterest
  * Pinterest API example.
- */
+ 
 exports.getPinterest = (req, res, next) => {
   const token = req.user.tokens.find((token) => token.kind === 'pinterest');
   axios.get(`https://api.pinterest.com/v1/me/boards?access_token=${token.accessToken}`)
@@ -697,7 +697,7 @@ exports.getPinterest = (req, res, next) => {
 /**
  * POST /api/pinterest
  * Create a pin.
- */
+ 
 exports.postPinterest = (req, res, next) => {
   const validationErrors = [];
   if (validator.isEmpty(req.body.board)) validationErrors.push({ msg: 'Board is required.' });
@@ -777,7 +777,7 @@ exports.getGoogleDrive = (req, res) => {
       title: 'Google Drive API',
       files: response.data.files,
     });
-  });
+  });``
 };
 
 exports.getGoogleSheets = (req, res) => {
@@ -809,3 +809,4 @@ exports.getGoogleSheets = (req, res) => {
     });
   });
 };
+*/

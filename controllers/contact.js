@@ -6,7 +6,7 @@ const nodemailerSendgrid = require('nodemailer-sendgrid');
 /**
  * GET /contact
  * Contact form page.
- */
+ 
 exports.getContact = (req, res) => {
   const unknownUser = !(req.user);
 
@@ -20,7 +20,7 @@ exports.getContact = (req, res) => {
 /**
  * POST /contact
  * Send a contact form via Nodemailer.
- */
+ 
 exports.postContact = async (req, res) => {
   const validationErrors = [];
   let fromName;
@@ -113,3 +113,4 @@ exports.postContact = async (req, res) => {
     console.log(err);
   }
 };
+*/
