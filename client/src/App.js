@@ -3,6 +3,9 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
+import PotholesNearMePage from './components/PotholesNearMePage/PotholesNearMePage'
+import AnalyzePage from './components/AnalyzeRoad/AnalyzePage';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -10,6 +13,9 @@ function App() {
       <Routes>
         <Route exact path='/' element={<LandingPage />}></Route>
         <Route exact path='/register' element={<RegisterPage />}></Route>
+        <Route exact path='/potholesnm' element={<PotholesNearMePage />}></Route>
+        <Route exact path='/analyze' element={<AnalyzePage />}></Route>
+        <Route exact path='/dashboard' element={<Dashboard />}></Route>
       </Routes>
     </Router>
   );

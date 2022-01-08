@@ -1,0 +1,76 @@
+/* pothole__section__main */
+.window__main {
+  width: 80vw;
+  height: 100vh;
+  background: #474973;
+}
+.pothole__section__main {
+  background: #474973;
+  width: 95%;
+  padding: 2.5%;
+  max-height: 93%;
+  overflow-y: scroll;
+}
+.pothole__section__main h2 {
+  margin: 10px 0;
+  color: #f1dac4;
+}
+.potholes {
+  margin-top: 10px;
+}
+.hole__bar {
+  width: 95%;
+  background: #a69cac;
+  padding: 2.5%;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+/* settings__section */
+.settings__section__main {
+  width: 95%;
+  padding: 2.5%;
+  max-height: 93%;
+  background: #474973;
+  overflow-y: scroll;
+}
+.settings__section__main h2 {
+  color: #f1dac4;
+}
+.deregister__section h3,
+.edit__section h3 {
+  color: #f1dac4;
+  margin-top: 5%;
+}
+.deregister__section p,
+.edit__section p,
+.delete__account__section p {
+  color: #a69cac;
+}
+.delete__account__section p {
+  margin-top: 5%;
+}
+.edit__section input {
+  border: 2px solid #f1dac4;
+  background: none;
+  color: #fff;
+  margin: 10px 0;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+.edit__button {
+  margin: 10px 0;
+}
+
+@media screen and (max-width: 500px) {
+  .window__main {
+    width: 100vw;
+    height: 90vh;
+    background: #474973;
+  }
+  .edit__section input {
+    max-width: 300px;
+  }
+}
