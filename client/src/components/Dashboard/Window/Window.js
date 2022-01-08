@@ -77,8 +77,33 @@ const SetupSection = () => {
             <h2>Setup section</h2>
             <div className='step__comp'>
                 <h2>Step 1:</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut posuere lacus, ac iaculis enim. In tristique, odio ut rhoncus consectetur, lorem leo congue erat, sit amet pharetra eros nunc ac sem. Curabitur volutpat nulla metus, bibendum tincidunt velit tempor nec.
-                    Nunc ac viverra neque, tincidunt rhoncus diam. Aliquam consequat, lacus in congue lobortis, mi leo gravida nisl, eget imperdiet magna dolor pellentesque diam. Nulla eu ligula eget metus auctor tincidunt.</p>
+                <p>After you obtain your raspberry pi and your pi camera, it's time to set them up!
+                    To do this, click on the following link(To be added once abbass finishes the app) which will download the application on your device.</p>
+                <a href='www.google.co.in'>Download Link</a>
+            </div>
+            <div className='step__comp'>
+                <h2>Step 2:</h2>
+                <p>Next, you need to configure the application to launch on startup. Simply just copy the following commands in your terminal:</p>
+                <div className='code__block'>
+                    sudo nano /etc/rc.local
+                </div>
+                <div className='code__block'>
+                    sudo python /home/pi/object_detection/program.py
+                </div>
+                <p>&(make sure to extract the zip file to the correct directory)</p>
+            </div>
+            <div className='step__comp'>
+                <h2>Step 3:</h2>
+                <p>Reboot the system, and once the raspberry pi starts up, the application will be up and running!</p>
+            </div>
+            <div className='step__comp'>
+                <h2>Step 4:</h2>
+                <p>Open your mobile's hotspot data and share your mobile data with the raspberry pi, and by that your little tracker will be up and running!</p>
+            </div>
+            <div className='code__block'>
+                <h3>We will soon be releasing pre-configured Raspberry Devices:</h3>
+                <p>That will require no saperate mobile connection</p>
+                <p>Will be in proper shape ready to mount on any vehicle</p>
             </div>
         </div>
     )

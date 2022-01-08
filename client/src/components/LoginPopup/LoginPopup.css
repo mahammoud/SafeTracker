@@ -10,7 +10,7 @@
 .popup__body {
   width: 800px;
   height: 600px;
-  background: #a69cac;
+  background: #474973;
   position: absolute;
 }
 .popup__body__left,
@@ -24,7 +24,7 @@
   width: 100%;
 }
 .login__form > h1 {
-  color: #474973;
+  color: #f1dac4;
 }
 .fields {
   width: calc(100% - 40px);
@@ -62,7 +62,7 @@
   right: 10px;
   transform: rotate(45deg);
   cursor: pointer;
-  fill: #474973;
+  fill: #f1dac4;
   height: 30px;
   width: 30px;
 }
