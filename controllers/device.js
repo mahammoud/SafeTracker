@@ -3,7 +3,7 @@ const User = require('../models/User');
 const Device = require('../models/device');
 const { next } = require('cheerio/lib/api/traversing');
 
-exports.associateDevice = (req, res) => {
+exports.associateDevice =async (req, res) => {
    const validationErrors = []; 
    if(!validator.isNumeric(req.body.serialNumber)) validationErrors.push({msg: "Please enter a valid serial number"});
    if (validationErrors.length) {
@@ -11,14 +11,24 @@ exports.associateDevice = (req, res) => {
     return res.redirect('/account');
    }
 
-   User.findById((req.user.id), (err, user) => {
+   User.findById((req.user.id),async (err, user) => {
     if (err) { return next(err)}
-    Device.find({serialNumber: req.body.serialNumber},(err,device)=>{
-        if(device){
-            req.flash({msg:'This Device is already registered'})
-            return res.redirect('/account')
-        }
-    })
+    const users  =await User.find();
+    var devices = [];
+    users.forEach(user => {
+        user.registeredDevices.forEach(devicetoadd => {
+            devices.push(devicetoadd);
+        });
+    });
+    var present = false;
+    devices.every(devicetocheck => {
+        if(req.body.serialNumber == devicetocheck.serialNumber){
+            present = true;
+            return false;
+        } 
+        return true;
+    });
+    if(present) return res.sendStatus(400);
     const device = new Device({serialNumber: req.body.serialNumber, parentUserId: user.id})
         
     user.registeredDevices.push(device)
@@ -26,6 +36,7 @@ exports.associateDevice = (req, res) => {
     user.save((err) => {
         if (err) { return next(err); }
       });
+    return res.sendStatus(201);
 })
 }
 exports.getDevices = (req, res) => {
