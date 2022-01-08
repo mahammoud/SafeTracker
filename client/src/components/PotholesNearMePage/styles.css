@@ -1,0 +1,12 @@
+.near__me {
+  background: #474973;
+  min-height: 100vh;
+}
+.near__me__main {
+  width: 95%;
+  padding: 2.5%;
+}
+.near__me__main > h2 {
+  color: #f1dac4;
+  margin-bottom: 20px;
+}

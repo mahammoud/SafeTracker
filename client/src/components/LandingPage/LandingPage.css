@@ -1,0 +1,52 @@
+.landing__page__master {
+  min-height: 100vh;
+  background: #474973;
+}
+.landing__page__main {
+  margin-top: 10%;
+}
+.landing__page__left,
+.landing__page__right {
+  width: 45%;
+  padding: 2.5%;
+}
+.landing__image__main {
+  width: 100%;
+}
+.landing__page__right > h1 {
+  font-size: 4rem;
+  line-height: 97%;
+  margin-bottom: 2.5%;
+  color: #f1dac4;
+}
+.landing__page__right > p {
+  color: #a69cac;
+  font-weight: bold;
+  margin: 5% 0;
+}
+.register__button {
+  margin-top: 2.5%;
+}
+
+@media screen and (max-width: 810px) {
+  .landing__page__main {
+    flex-direction: column-reverse;
+  }
+  .landing__page__left,
+  .landing__page__right {
+    width: 95%;
+    padding: 2.5%;
+  }
+  .landing__page__right {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .landing__page__right > h1 {
+    font-size: 3rem;
+  }
+  .register__button {
+    margin: 5% 0;
+  }
+}

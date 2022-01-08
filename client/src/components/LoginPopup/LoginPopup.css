@@ -1,0 +1,92 @@
+.popup__login__main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  height: 100vh;
+  width: 100vw;
+  z-index: 200;
+}
+.popup__body {
+  width: 800px;
+  height: 600px;
+  background: #a69cac;
+  position: absolute;
+}
+.popup__body__left,
+.popup__body__right {
+  width: 40%;
+  padding: 5%;
+  height: 90%;
+}
+.login__form {
+  height: 100%;
+  width: 100%;
+}
+.login__form > h1 {
+  color: #474973;
+}
+.fields {
+  width: calc(100% - 40px);
+}
+.login__input__field,
+.login__button {
+  padding: 15px;
+  width: 100%;
+}
+.login__input__field {
+  border: 2px solid #f1dac4;
+  background: none;
+  color: #fff;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+.login__button {
+  border: 2px solid #f1dac4;
+  background: none;
+  color: #f1dac4;
+  width: 50%;
+  margin: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.popup__body__left {
+  background: url("../../assets/images/fakurian-design-nY14Fs8pxT8-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+  color: #f1dac4;
+}
+.close__login__button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transform: rotate(45deg);
+  cursor: pointer;
+  fill: #474973;
+  height: 30px;
+  width: 30px;
+}
+
+@media screen and (max-width: 810px) {
+  .popup__body {
+    height: 100vh;
+    width: 100vw;
+    background: url("../../assets/images/fakurian-design-nY14Fs8pxT8-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  .popup__body__left {
+    background: none;
+  }
+  .popup__body__right h1 {
+    color: #f1dac4;
+  }
+}
+@media screen and (max-width: 600px) {
+  .popup__body__left {
+    display: none;
+  }
+  .popup__body__right {
+    width: 80%;
+  }
+}

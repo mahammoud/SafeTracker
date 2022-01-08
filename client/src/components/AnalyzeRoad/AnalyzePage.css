@@ -1,0 +1,95 @@
+.analyze__page__main {
+  background: #474973;
+  min-height: 100vh;
+}
+.analyze__section {
+  color: #f1dac4;
+  margin: 5% 0;
+}
+.choose__image {
+  position: relative;
+  display: inline-block;
+  border-radius: 8px;
+  width: 210px;
+  height: 210px;
+  padding: 20px;
+  font-size: 14px;
+  color: #f1dac4;
+  background: #a69cac;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.choose__image:hover {
+  background: #36385c;
+}
+.choose__image input[type="file"] {
+  -webkit-appearance: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 100%;
+}
+
+.click__image {
+  background: #a69cac;
+  color: #f1dac4;
+  width: 210px;
+  height: 210px;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.click__image:hover {
+  background: #36385c;
+}
+
+/*CAMERA SETUP*/
+.cameraMain {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+.camera__interface {
+  height: 600px;
+  width: 800px;
+}
+.close__camera__button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transform: rotate(45deg);
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+.photo__clicked,
+.camera {
+  width: 100%;
+  height: 100%;
+}
+.webcam {
+  border-radius: 10px;
+}
+.camera__buttons {
+  margin-top: 10px;
+}
+.photo__display {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+}
+.photo__display > img {
+  height: 50%;
+}

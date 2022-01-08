@@ -1,0 +1,58 @@
+.sidebar__main {
+  width: 20vw;
+  background: #3f3d56;
+  height: 100vh;
+  justify-content: flex-start;
+  color: #f1dac4;
+}
+.sidebar__main .sidebar__options {
+  margin-top: 20px;
+  width: 100%;
+}
+.option,
+.sidebar__header {
+  width: 90%;
+  padding: 5%;
+}
+.option {
+  cursor: pointer;
+}
+.option:hover {
+  background: #474973;
+}
+.selected__option {
+  background: #474973;
+}
+
+/*----------------*/
+.map__container {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .option p {
+    display: none;
+  }
+  .sidebar__header h1 {
+    font-size: 15px;
+  }
+  .sidebar__header h2 {
+    font-size: 15px;
+  }
+  .map__container {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .sidebar__main {
+    width: 100vw;
+    height: 10vh;
+    flex-direction: row;
+    height: auto;
+  }
+  .sidebar__options {
+    display: flex;
+  }
+  .sidebar__header {
+    display: none;
+  }
+}
