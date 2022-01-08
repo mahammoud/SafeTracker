@@ -30,8 +30,8 @@ dotenv.config({ path: '.env.example' });
  */
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
-const apiController = require('./controllers/api');
 const deviceController = require('./controllers/device')
+const potholeController = require('./controllers/pothole');
 
 
 /**
@@ -141,14 +141,16 @@ app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
-app.post('/device', passportConfig.isAuthenticated, deviceController.associateDevice)
+app.post('/device', passportConfig.isAuthenticated, deviceController.associateDevice);
+app.post('/pothole', potholeController.markPothole);
+app.get('/pothole', passportConfig.isAuthenticated, potholeController.getPotholes)
 //app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 /**
  * API examples routes.
  */
-app.get('/api', apiController.getApi);
-app.get('/api/lastfm', apiController.getLastfm);
+//app.get('/api', apiController.getApi);
+//app.get('/api/lastfm', apiController.getLastfm);
 //app.get('/api/nyt', apiController.getNewYorkTimes);
 //app.get('/api/steam', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getSteam);
 //app.get('/api/stripe', apiController.getStripe);
@@ -168,8 +170,8 @@ app.get('/api/lastfm', apiController.getLastfm);
 //app.get('/api/paypal/success', apiController.getPayPalSuccess);
 //app.get('/api/paypal/cancel', apiController.getPayPalCancel);
 //app.get('/api/lob', apiController.getLob);
-app.get('/api/upload', lusca({ csrf: true }), apiController.getFileUpload);
-app.post('/api/upload', upload.single('myFile'), lusca({ csrf: true }), apiController.postFileUpload);
+//app.get('/api/upload', lusca({ csrf: true }), apiController.getFileUpload);
+//app.post('/api/upload', upload.single('myFile'), lusca({ csrf: true }), apiController.postFileUpload);
 //app.get('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getPinterest);
 //app.post('/api/pinterest', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.postPinterest);
 //app.get('/api/here-maps', apiController.getHereMaps);
@@ -181,7 +183,7 @@ app.post('/api/upload', upload.single('myFile'), lusca({ csrf: true }), apiContr
 
 /**
  * OAuth authentication routes. (Sign in)
- */
+ 
 app.get('/auth/instagram', passport.authenticate('instagram', { scope: ['basic', 'public_content'] }));
 app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login' }), (req, res) => {
   res.redirect(req.session.returnTo || '/');
@@ -217,7 +219,7 @@ app.get('/auth/twitch/callback', passport.authenticate('twitch', { failureRedire
 
 /**
  * OAuth authorization routes. (API examples)
- */
+ 
 app.get('/auth/foursquare', passport.authorize('foursquare'));
 app.get('/auth/foursquare/callback', passport.authorize('foursquare', { failureRedirect: '/api' }), (req, res) => {
   res.redirect('/api/foursquare');
