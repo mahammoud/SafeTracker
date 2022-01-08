@@ -31,22 +31,22 @@ exports.markPothole =  (req,res) => {
 }
 exports.getPotholes =async (req,res) => {
     const validationErrors = [];
-    if(!req.query.minlat || !validator.isNumeric(req.query.minlat)) validationErrors.push({msg: 'Please provide a valid minimum latitude'});
+    /*if(!req.query.minlat || !validator.isNumeric(req.query.minlat)) validationErrors.push({msg: 'Please provide a valid minimum latitude'});
     if(!req.query.maxlat || !validator.isNumeric(req.query.maxlat)) validationErrors.push({msg: 'Please provide a valid maximum latitude'});
     if(!req.query.minlng || !validator.isNumeric(req.query.minlng)) validationErrors.push({msg: 'Please provide a valid minimum longitude'});
     if(!req.query.maxlng || !validator.isNumeric(req.query.maxlng)) validationErrors.push({msg: 'Please provide a valid maximum longitude'});
     if(validationErrors.length){
         req.flash(validationErrors);
         return res.sendStatus(400);
-    }
+    }*/
     var minlat = -90;
     var maxlat = 90;
     var minlng = -180;
     var maxlng = 180;
-    minlat = Math.max(minlat, Number(req.query.minlat));
-    maxlat = Math.min(maxlat, Number(req.query.maxlat));
-    minlng = Math.max(minlng, Number(req.query.minlng));
-    maxlng = Math.min(maxlng, Number(req.query.maxlng));
+    minlat = Math.max(minlat, Number(req.query.minlat)) || minlat;
+    maxlat = Math.min(maxlat, Number(req.query.maxlat)) || maxlat;
+    minlng = Math.max(minlng, Number(req.query.minlng)) || minlng;
+    maxlng = Math.min(maxlng, Number(req.query.maxlng)) || maxlng;
     const users = await User.find();
     var potholes = [];
     users.forEach(user => {

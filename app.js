@@ -144,6 +144,7 @@ app.post('/account/delete', passportConfig.isAuthenticated, userController.postD
 app.post('/device', passportConfig.isAuthenticated, deviceController.associateDevice);
 app.post('/pothole', potholeController.markPothole);
 app.get('/pothole', passportConfig.isAuthenticated, potholeController.getPotholes)
+app.get('/device', passportConfig.isAuthenticated, deviceController.getDevices)
 //app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 /**

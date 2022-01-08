@@ -28,3 +28,9 @@ exports.associateDevice = (req, res) => {
       });
 })
 }
+exports.getDevices = (req, res) => {
+    User.findById(req.user.id, (err,user)=> {
+        if(err) return next(err);
+        return res.json(user.registeredDevices);
+    })
+}
