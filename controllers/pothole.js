@@ -3,7 +3,9 @@ const User = require('../models/User');
 const Device = require('../models/device');
 const Pothole = require('../models/pothole');
 const { next } = require('cheerio/lib/api/traversing');
-
+/**
+ * Expose an endpoint for the authorized devices to report their findings of potholes
+ */
 exports.markPothole =  (req,res) => {
     const validationErrors = [];
     if(!req.body.lat || !validator.isNumeric(req.body.lat)) validationErrors.push({msg: 'Please provide a valid latitude'});
@@ -29,6 +31,9 @@ exports.markPothole =  (req,res) => {
         return res.sendStatus(201);
     });
 }
+/**
+ * Get Potholes for a specifed range
+ */
 exports.getPotholes =async (req,res) => {
     const validationErrors = [];
     /*if(!req.query.minlat || !validator.isNumeric(req.query.minlat)) validationErrors.push({msg: 'Please provide a valid minimum latitude'});
