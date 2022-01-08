@@ -1,9 +1,9 @@
 const passport = require('passport');
 const refresh = require('passport-oauth2-refresh');
 const axios = require('axios');
-/*const { Strategy: InstagramStrategy } = require('passport-instagram');
+//const { Strategy: InstagramStrategy } = require('passport-instagram');
 const { Strategy: LocalStrategy } = require('passport-local');
-const { Strategy: FacebookStrategy } = require('passport-facebook');
+/*const { Strategy: FacebookStrategy } = require('passport-facebook');
 const { Strategy: SnapchatStrategy } = require('passport-snapchat');
 const { Strategy: TwitterStrategy } = require('passport-twitter');
 const { Strategy: TwitchStrategy } = require('passport-twitch-new');
@@ -12,7 +12,7 @@ const { OAuth2Strategy: GoogleStrategy } = require('passport-google-oauth');
 const { Strategy: LinkedInStrategy } = require('passport-linkedin-oauth2');
 const { Strategy: OpenIDStrategy } = require('passport-openid');
 const { OAuthStrategy } = require('passport-oauth');
-const { OAuth2Strategy } = require('passport-oauth');
+const { OAuth2Strategy } = require('passport-oauth');*/
 const _ = require('lodash');
 const moment = require('moment');
 
@@ -30,7 +30,7 @@ passport.deserializeUser((id, done) => {
 
 /**
  * Sign in using Email and Password.
- 
+*/
 passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
   User.findOne({ email: email.toLowerCase() }, (err, user) => {
     if (err) { return done(err); }

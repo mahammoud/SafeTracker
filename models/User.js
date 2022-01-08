@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
-
 const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String,
@@ -9,8 +8,10 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   emailVerificationToken: String,
   emailVerified: Boolean,
+  capturedPotholes: [Object],
+  registeredDevices: [Object]
 
-  snapchat: String,
+  /*snapchat: String,
   facebook: String,
   twitter: String,
   google: String,
@@ -20,15 +21,15 @@ const userSchema = new mongoose.Schema({
   steam: String,
   twitch: String,
   quickbooks: String,
-  tokens: Array,
+  tokens: Array,*/
 
-  profile: {
+  /*profile: {
     name: String,
     gender: String,
     location: String,
     website: String,
     picture: String
-  }
+  }*/
 }, { timestamps: true });
 
 /**
