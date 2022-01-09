@@ -26,7 +26,7 @@ Step 4: open your mobile's hotspot data and share your mobile data with the rasp
 
 Api Endpoints:
 
-/**
+/
  * login
  */
 app.post('/api/login', userController.postLogin);
