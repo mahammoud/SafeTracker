@@ -55,5 +55,7 @@ app.get('/api/pothole', passportConfig.isAuthenticated, potholeController.getPot
  */
 app.get('/api/device', passportConfig.isAuthenticated, deviceController.getDevices)
 
-
+Credits:
+https://github.com/prasadshiva27/Pothole-detection-using-Tensorflow-Object-Detection-API
+https://github.com/sahat/hackathon-starter/
 
