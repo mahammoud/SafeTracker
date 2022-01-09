@@ -10,26 +10,6 @@ const userSchema = new mongoose.Schema({
   emailVerified: Boolean,
   capturedPotholes: [Object],
   registeredDevices: [Object]
-
-  /*snapchat: String,
-  facebook: String,
-  twitter: String,
-  google: String,
-  github: String,
-  instagram: String,
-  linkedin: String,
-  steam: String,
-  twitch: String,
-  quickbooks: String,
-  tokens: Array,*/
-
-  /*profile: {
-    name: String,
-    gender: String,
-    location: String,
-    website: String,
-    picture: String
-  }*/
 }, { timestamps: true });
 
 /**
@@ -55,20 +35,6 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword,
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     cb(err, isMatch);
   });
-};
-
-/**
- * Helper method for getting user's gravatar.
- */
-userSchema.methods.gravatar = function gravatar(size) {
-  if (!size) {
-    size = 200;
-  }
-  if (!this.email) {
-    return `https://gravatar.com/avatar/?s=${size}&d=retro`;
-  }
-  const md5 = crypto.createHash('md5').update(this.email).digest('hex');
-  return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
 };
 
 const User = mongoose.model('User', userSchema);

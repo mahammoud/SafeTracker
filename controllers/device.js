@@ -10,8 +10,7 @@ exports.associateDevice =async (req, res) => {
    const validationErrors = []; 
    if(!validator.isNumeric(req.body.serialNumber)) validationErrors.push({msg: "Please enter a valid serial number"});
    if (validationErrors.length) {
-    req.flash('errors', validationErrors);
-    return res.redirect('/account');
+    res.sendStatus(400);
    }
 
    User.findById((req.user.id),async (err, user) => {
@@ -39,7 +38,7 @@ exports.associateDevice =async (req, res) => {
     user.save((err) => {
         if (err) { return next(err); }
       });
-    return res.sendStatus(201);
+    return res.Status(201).send({success:true});
 })
 }
 /**

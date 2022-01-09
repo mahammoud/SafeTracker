@@ -11,8 +11,7 @@ exports.markPothole =  (req,res) => {
     if(!req.body.lat || !validator.isNumeric(req.body.lat)) validationErrors.push({msg: 'Please provide a valid latitude'});
     if(!req.body.lng || !validator.isNumeric(req.body.lng)) validationErrors.push({msg: 'Please provide a valid longitude'})
     if(validationErrors.length){
-        req.flash(validationErrors);
-        return res.sendStatus(400);
+        return res.send(Object.assign({}, validationErrors)).status(400);
     }
     Device.find({serialNumber : req.body.serialNumber},(err,device) => {
         if(!device) return res.sendStatus(401);
@@ -28,22 +27,13 @@ exports.markPothole =  (req,res) => {
                 if(err) return next(err);
             })
         });
-        return res.sendStatus(201);
+        return res.send({success:true}).status(201);
     });
 }
 /**
  * Get Potholes for a specifed range
  */
 exports.getPotholes =async (req,res) => {
-    const validationErrors = [];
-    /*if(!req.query.minlat || !validator.isNumeric(req.query.minlat)) validationErrors.push({msg: 'Please provide a valid minimum latitude'});
-    if(!req.query.maxlat || !validator.isNumeric(req.query.maxlat)) validationErrors.push({msg: 'Please provide a valid maximum latitude'});
-    if(!req.query.minlng || !validator.isNumeric(req.query.minlng)) validationErrors.push({msg: 'Please provide a valid minimum longitude'});
-    if(!req.query.maxlng || !validator.isNumeric(req.query.maxlng)) validationErrors.push({msg: 'Please provide a valid maximum longitude'});
-    if(validationErrors.length){
-        req.flash(validationErrors);
-        return res.sendStatus(400);
-    }*/
     var minlat = -90;
     var maxlat = 90;
     var minlng = -180;
