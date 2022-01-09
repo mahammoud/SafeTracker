@@ -20,9 +20,6 @@ const Navbar = () => {
                 <Link to='/potholesnm' style={{ textDecoration: 'none' }} className='nav__links'>
                     <p>Potholes near you</p>
                 </Link>
-                <Link to='/analyze' style={{ textDecoration: 'none' }} className='nav__links'>
-                    <p>Analyze the road</p>
-                </Link>
             </div>
             <div className='navbar__right display__flex'>
                 <button className='login__button__nav desk' onClick={() => setLogin(true)}>Log In</button>
@@ -31,9 +28,6 @@ const Navbar = () => {
             <div className={(nav) ? 'display__flex mobile__nav translated' : ' display__flex mobile__nav'}>
                 <Link to='/potholesnm' style={{ textDecoration: 'none' }} className='nav__links'>
                     <p>Potholes near you</p>
-                </Link>
-                <Link to='/analyze' style={{ textDecoration: 'none' }} className='nav__links'>
-                    <p>Analyze the road</p>
                 </Link>
                 <button className='login__button__nav' onClick={() => { setLogin(true); setNav(false) }}>Log In</button>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill='#f1dac4' width="25" height="25" className='close__nav__button' onClick={() => setNav(false)}><path d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z" /></svg>

@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import './SideBar.css'
 import Rasp from '../../../assets/images/raspberry-pi.svg';
+import { Link } from 'react-router-dom';
 
 const SideBar = ({ option, setOption }) => {
     return (
         <div className='sidebar__main display__flex flex__flow__down display__flex__start'>
             <div className='sidebar__header'>
-                <h2>SafeTracker</h2>
+                <Link to='/' style={{ textDecoration: 'none', color: '#f1dac4' }}>
+                    <h2>SafeTracker</h2>
+                </Link>
                 <div className='vert__space__20'></div>
                 <h1>Hey User 👋</h1>
             </div>
