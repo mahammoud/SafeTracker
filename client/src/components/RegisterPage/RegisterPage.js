@@ -1,13 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './RegisterPage.css'
 import TransLogo from '../../assets/logo/translogo.png';
-import { Link } from 'react-router-dom';
 import * as Scroll from 'react-scroll';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
     let ScrollLink = Scroll.Link;
-    const handleSubmit = (e) => {
+
+    const history = useNavigate();
+
+    const host = 'http://localhost:8080'
+
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const response = await fetch(`${host}/api/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-type': "application/json"
+            },
+            body: JSON.stringify({ email, password, confirmPassword })
+        })
+
+        const json = await response.json();
+        console.log(json);
+        if (json.success) {
+            localStorage.setItem('safe-tracker-token', json.authToken);
+            history('/dashboard');
+            console.log('success signing up');
+        } else {
+            console.log('something went wrong');
+        }
         console.log('submit');
     }
     return (
@@ -53,10 +80,9 @@ const RegisterPage = () => {
                 <form onSubmit={(e) => handleSubmit(e)} className='register__form'>
                     <h1>Register!!</h1>
                     <div className='vert__space__20'></div>
-                    <input className='login__input__field' placeholder='Enter your Name'></input>
-                    <input className='login__input__field' placeholder='Enter your Email' type={'email'}></input>
-                    <input className='login__input__field' placeholder='Enter your Password' type='password'></input>
-                    <input className='login__input__field' placeholder='Confirm Password' type='password'></input>
+                    <input className='login__input__field' placeholder='Enter your Email' type={'email'} value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                    <input className='login__input__field' placeholder='Enter your Password' type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                    <input className='login__input__field' placeholder='Confirm Password' type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
                     <button className='login__button'>Register</button>
                 </form>
             </div>

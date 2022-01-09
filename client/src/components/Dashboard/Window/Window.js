@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import DeviceContext from '../../../context/Device/DeviceContext'
+import PotholeContext from '../../../context/Potholes/PotholeContext'
 import Map from '../../Map/Map'
 import './Window.css'
-
 const Window = ({ option }) => {
     return (
         <div className='window__main'>
@@ -16,30 +18,21 @@ const Window = ({ option }) => {
 
 const PotholeSection = ({ option }) => {
     const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
+    const [potholes, setPotholes] = useState([]);
 
-    const potholes = [
-        {
-            lat: '30.6825695',
-            lng: '76.8539225',
-            id: 'WEQR10002010'
-        },
-        {
-            lat: '30.6836497',
-            lng: '76.8539245',
-            id: 'WEQR10002011'
-        },
-        {
-            lat: '30.6825595',
-            lng: '76.8559225',
-            id: 'WEQR10002012'
-        },
-        {
-            lat: '30.6875595',
-            lng: '76.8599225',
-            id: 'WEQR10002013'
-        },
-    ]
+    const history = useNavigate();
 
+    const potholeContext = useContext(PotholeContext);
+    const { UserPotholes, potholesGlobal } = potholeContext;
+
+    useEffect(() => {
+        if (localStorage.getItem('safe-tracker-token')) {
+            UserPotholes();
+            setPotholes(potholesGlobal);
+        } else {
+            // history('/');
+        }
+    }, [coordinates,])
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -113,13 +106,31 @@ const SettingSection = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
     }
+
+    const deviceContext = useContext(DeviceContext);
+    const { UserDevices, devices } = deviceContext;
+
+    useEffect(() => {
+        UserDevices();
+    }, [])
+
     return (
         <div className='settings__section__main'>
             <h2>Setting section</h2>
             <div className='vert__space__20'></div>
             <div className='deregister__section display__flex flex__flow__down display__flex__start'>
                 <h3>Deregister your device</h3>
-                <p>You can register again anytime using Secret code in your (Setup your Raspberry Pi) Section</p>
+                <div className='user__devices'>
+                    {
+                        (devices.length !== 0) ?
+                            devices.map((dev, i) => {
+                                <div className='device__section'>
+                                    <p>Device Name</p>
+                                </div>
+                            }) : <p>No devices for you</p>
+                    }
+                </div>
+                <p>You can register again anytime using Instructions in your (Setup your Raspberry Pi) Section</p>
                 <div className='vert__space__20'></div>
                 <button className='primary__button'>Deregister</button>
             </div>

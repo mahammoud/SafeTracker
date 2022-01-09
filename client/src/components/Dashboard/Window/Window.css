@@ -88,6 +88,15 @@
 .code__block p {
   margin: 5px 0;
 }
+.user__devices {
+  background: #6366a0;
+  width: fit-content;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  color: #f1dac4;
+}
+
 @media screen and (max-width: 500px) {
   .window__main {
     width: 100vw;

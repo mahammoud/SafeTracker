@@ -1,5 +1,5 @@
 @media screen and (max-width: 500px) {
   .dashboard__main {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 }

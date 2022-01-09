@@ -1,8 +1,46 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import TransLogo from '../../assets/logo/translogo.png';
+import UserContext from '../../context/User/UserContext';
 import './LoginPopup.css';
 
 const LoginPopup = ({ setLogin }) => {
+
+    const history = useNavigate();
+
+    const userContext = useContext(UserContext);
+
+    const host = 'http://localhost:8080'
+
+    const { loginUser, setLoggedIn } = userContext;
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const response = await fetch(`${host}/api/login`, {
+            method: 'POST',
+            headers: {
+                'Content-type': "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        })
+
+        const json = await response.json();
+        console.log(json);
+        if (json.success) {
+            localStorage.setItem('safe-tracker-token', json.authToken);
+            history('/dashboard');
+            setLoggedIn(true);
+        } else {
+            console.log('wrong credentials');
+            setLoggedIn(false);
+            history('/');
+        }
+    }
+
+
     return (
         <div className='popup__login__main display__flex'>
             <div className='popup__body display__flex'>
@@ -11,11 +49,11 @@ const LoginPopup = ({ setLogin }) => {
                     <img src={TransLogo} alt='safetrackerlogo' width={'50px'}></img>
                 </div>
                 <div className='popup__body__right'>
-                    <form className='login__form display__flex flex__flow__down display__flex__start flex__space__between'>
+                    <form className='login__form display__flex flex__flow__down display__flex__start flex__space__between' onSubmit={(e) => handleSubmit(e)}>
                         <h1>Log In</h1>
                         <div className='fields display__flex flex__flow__down display__flex__start'>
-                            <input className='login__input__field' placeholder='Enter your Email'></input>
-                            <input className='login__input__field' placeholder='Enter your Password'></input>
+                            <input className='login__input__field' placeholder='Enter your Email' value={email} onChange={(e) => setEmail(e.target.value)} type={'email'}></input>
+                            <input className='login__input__field' placeholder='Enter your Password' type={'password'} value={password} onChange={(e) => setPassword(e.target.value)}></input>
                             <button type='submit' className='login__button'>Log In</button>
                         </div>
                     </form>

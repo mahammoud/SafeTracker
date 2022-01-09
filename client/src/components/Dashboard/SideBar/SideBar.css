@@ -45,12 +45,25 @@
 @media screen and (max-width: 500px) {
   .sidebar__main {
     width: 100vw;
-    height: 10vh;
-    flex-direction: row;
     height: auto;
+    flex-direction: row;
   }
   .sidebar__options {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .option svg,
+  .option img {
+    width: 25px;
   }
   .sidebar__header {
     display: none;
